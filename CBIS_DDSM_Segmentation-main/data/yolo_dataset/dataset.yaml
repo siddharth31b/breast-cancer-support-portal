@@ -1,0 +1,6 @@
+path: C:\Users\HP\Desktop\CBIS_DDSM_Segmentation\data\yolo_dataset
+train: images/train
+val: images/val
+
+names:
+  0: mass_lesion

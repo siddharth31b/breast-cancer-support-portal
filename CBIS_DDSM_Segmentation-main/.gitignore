@@ -16,20 +16,8 @@ cad-dashboard/out/
 cad-dashboard/build/
 .npm
 
-# Dataset & Large Raw Files (Excluding trained weights)
-data/
-outputs/
-runs/
-*.csv
-
 # OS & IDE
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-
-# Models & Weights (LFS objects)
-models/
-weights/
-*.pth
-*.pt

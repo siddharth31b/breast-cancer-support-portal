@@ -39,7 +39,6 @@ outputs/web_results/
 static/uploads/
 ai-service/outputs/web_results/
 ai-service/static/uploads/
-CBIS_DDSM_Segmentation-main/outputs/
 
 
 # Python virtualenv & cache
