@@ -1,0 +1,681 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #005F56;
+  --color-primary-hover: #004D46;
+  --color-accent-teal: #00897B;
+  --color-accent-teal-hover: #00796B;
+  --color-background-app: #F4F6F9;
+  --color-sidebar-bg: #FFFFFF;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MASTER HOVER & MICRO-INTERACTION SYSTEM (180ms ease-out)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --motion-duration: 180ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 1. Global Smooth Transitions for Interactive Controls */
+button,
+a,
+input,
+select,
+textarea,
+th,
+td,
+.interactive-card,
+[role="button"] {
+  transition-property: transform, opacity, box-shadow, border-color, background-color, color;
+  transition-duration: var(--motion-duration);
+  transition-timing-function: var(--motion-ease);
+}
+
+/* Custom interactive ring utility */
+.focus-ring {
+  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
+
+/* ─── Premium Keyframe Animations ──────────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 95, 86, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 95, 86, 0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: var(--target-width, 60%);
+  }
+}
+
+@keyframes ringDraw {
+  from {
+    stroke-dashoffset: var(--ring-length, 175.9);
+  }
+
+  to {
+    stroke-dashoffset: var(--ring-offset, 0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ─── Animation Utility Classes ────────────────────────────────────────────── */
+
+.animate-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up-delay {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.animate-fade-up-delay2 {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+.animate-fade-up-delay3 {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-badge-pop {
+  animation: badgePop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── 1. LANDING PAGE CARDS & BOX CONTAINERS HOVER SYSTEM (EARLIER POP-UP) ── */
+
+.card-hover,
+.container-popup,
+section[aria-label] div[class*="rounded-2xl"],
+section[aria-label] div[class*="rounded-3xl"] {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 250ms ease-out,
+    background-color 250ms ease-out;
+}
+
+.card-hover:hover,
+.container-popup:hover,
+section[aria-label] div[class*="rounded-2xl"]:hover,
+section[aria-label] div[class*="rounded-3xl"]:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px -8px rgba(0, 95, 86, 0.18), 0 12px 24px -6px rgba(15, 23, 42, 0.12);
+  border-color: rgba(0, 95, 86, 0.45);
+}
+
+.card-hover:active,
+.container-popup:active,
+section[aria-label] div[class*="rounded-2xl"]:active,
+section[aria-label] div[class*="rounded-3xl"]:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* ─── 2. BUTTONS HOVER SYSTEM ───────────────────────────────────────────────── */
+
+button:not(:disabled),
+a.btn-interactive,
+[role="button"]:not(:disabled) {
+  transition: transform var(--motion-duration) var(--motion-ease),
+    box-shadow var(--motion-duration) var(--motion-ease),
+    background-color var(--motion-duration) var(--motion-ease),
+    border-color var(--motion-duration) var(--motion-ease),
+    color var(--motion-duration) var(--motion-ease);
+}
+
+button:not(:disabled):hover,
+[role="button"]:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+button:not(:disabled):active,
+[role="button"]:not(:disabled):active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Directional Arrow Shift on Hover */
+button:hover svg.lucide-arrow-right,
+button:hover svg.lucide-chevron-right,
+a:hover svg.lucide-arrow-right,
+a:hover svg.lucide-chevron-right {
+  transform: translateX(2px);
+  transition: transform var(--motion-duration) var(--motion-ease);
+}
+
+/* Refresh Icon Rotation on Hover (Max 90deg) */
+button:hover svg.lucide-refresh-cw,
+button:hover svg.lucide-rotate-ccw {
+  transform: rotate(90deg);
+  transition: transform var(--motion-duration) var(--motion-ease);
+}
+
+/* ─── 3. INPUT FIELDS & SELECTS ─────────────────────────────────────────────── */
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  transition: border-color var(--motion-duration) var(--motion-ease),
+    background-color var(--motion-duration) var(--motion-ease),
+    box-shadow var(--motion-duration) var(--motion-ease);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(0, 95, 86, 0.35);
+  background-color: rgba(248, 250, 252, 0.9);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 95, 86, 0.15);
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* ─── 4. SIDEBAR ITEMS ──────────────────────────────────────────────────────── */
+
+nav a,
+aside a {
+  transition: background-color var(--motion-duration) var(--motion-ease),
+    color var(--motion-duration) var(--motion-ease),
+    border-color var(--motion-duration) var(--motion-ease);
+}
+
+nav a:hover,
+aside a:hover {
+  background-color: rgba(0, 95, 86, 0.06);
+  color: var(--color-primary);
+}
+
+nav a:hover svg,
+aside a:hover svg {
+  color: var(--color-primary);
+  transition: color var(--motion-duration) var(--motion-ease);
+}
+
+/* ─── 5. TABLE ROWS ─────────────────────────────────────────────────────────── */
+
+tbody tr {
+  transition: background-color var(--motion-duration) var(--motion-ease);
+}
+
+tbody tr:hover {
+  background-color: rgba(241, 245, 249, 0.7);
+  cursor: pointer;
+}
+
+/* ─── 6. ICON BUTTONS ───────────────────────────────────────────────────────── */
+
+.icon-btn-hover {
+  transition: background-color var(--motion-duration) var(--motion-ease),
+    color var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+}
+
+.icon-btn-hover:hover {
+  background-color: rgba(0, 95, 86, 0.08);
+  color: var(--color-primary);
+}
+
+/* ─── 7. TAGS & BADGES ──────────────────────────────────────────────────────── */
+
+span[class*="rounded-full"][class*="text-"] {
+  transition: opacity var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+}
+
+span[class*="rounded-full"][class*="text-"]:hover {
+  opacity: 0.95;
+  transform: translateY(-0.5px);
+}
+
+/* ─── 11. IMAGES HOVER SYSTEM ───────────────────────────────────────────────── */
+
+img {
+  transition: transform var(--motion-duration) var(--motion-ease),
+    filter var(--motion-duration) var(--motion-ease);
+}
+
+.group:hover img {
+  transform: scale(1.015);
+  filter: brightness(1.02);
+}
+
+/* ─── 12. REPORT THUMBNAILS ─────────────────────────────────────────────────── */
+
+.report-thumbnail {
+  transition: border-color var(--motion-duration) var(--motion-ease),
+    box-shadow var(--motion-duration) var(--motion-ease),
+    transform var(--motion-duration) var(--motion-ease);
+  cursor: pointer;
+}
+
+.report-thumbnail:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+/* ─── 18. MODALS & OVERLAYS ─────────────────────────────────────────────────── */
+
+.modal-animate-in {
+  animation: modalFadeIn var(--motion-duration) var(--motion-ease) forwards;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ─── Typography Scale ──────────────────────────────────────────────────────── */
+
+.text-display {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.text-headline {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.text-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* ─── Shimmer Loading ───────────────────────────────────────────────────────── */
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #f1f5f9;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ─── Progress Bar Animated ─────────────────────────────────────────────────── */
+
+.progress-bar-animated {
+  animation: progressFill 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* ─── Glass Card ────────────────────────────────────────────────────────────── */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ─── Teal Gradient ─────────────────────────────────────────────────────────── */
+
+.gradient-primary {
+  background: linear-gradient(135deg, #005F56 0%, #00897B 100%);
+}
+
+.gradient-hero {
+  background: linear-gradient(160deg, #f0f9f8 0%, #e6f4f3 30%, #fafbfd 60%, #f0f4ff 100%);
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────────────────────────── */
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+  }
+}
+
+/* ─── Timeline Connector ────────────────────────────────────────────────────── */
+
+.timeline-connector {
+  background: linear-gradient(to bottom, #005F56, #00897B, #e2e8f0);
+}
+
+/* ─── Badge Styles ──────────────────────────────────────────────────────────── */
+
+.badge-verified {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold border;
+  background: rgba(0, 95, 86, 0.06);
+  color: #005F56;
+  border-color: rgba(0, 95, 86, 0.15);
+}
+
+.badge-live {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold border;
+  background: rgba(16, 185, 129, 0.06);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* ─── Glow Ring ─────────────────────────────────────────────────────────────── */
+
+.glow-ring-active {
+  box-shadow: 0 0 0 4px rgba(0, 95, 86, 0.12), 0 0 20px rgba(0, 95, 86, 0.08);
+}
+
+/* ─── Stage pipeline animation ──────────────────────────────────────────────── */
+
+@keyframes stagePulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 95, 86, 0.3);
+    border-color: rgba(0, 95, 86, 0.8);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(0, 95, 86, 0);
+    border-color: #005F56;
+  }
+}
+
+.stage-active-ring {
+  animation: stagePulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Chatbot Avatar Breathing Animation ───────────────────────────────────── */
+
+@keyframes chatbotPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(219, 39, 119, 0.4), 0 0 0 0 rgba(219, 39, 119, 0.35);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 15px 30px -5px rgba(219, 39, 119, 0.5), 0 0 0 10px rgba(219, 39, 119, 0);
+  }
+}
+
+.animate-chatbot-pulse {
+  animation: chatbotPulse 3s ease-in-out infinite;
+}
+
+/* ─── ACCESSIBILITY: Reduced Motion Support ───────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Leaflet Clinical Map Theme Overrides ────────────────────────────────── */
+.leaflet-container {
+  background: #ffffff !important;
+  font-family: var(--font-sans) !important;
+}
+
+.leaflet-bar {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden !important;
+}
+
+.leaflet-bar a {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  transition: all 0.15s ease !important;
+}
+
+.leaflet-bar a:hover {
+  background-color: #f0fdfa !important;
+  color: #005F56 !important;
+}

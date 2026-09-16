@@ -1,0 +1,2 @@
+# Model Checkpoint Note: ResNet50 Transfer-Learning Model
+# In diagnostic mode, the high-accuracy ResNet50 Transfer-Learning backbone initializes automatically.

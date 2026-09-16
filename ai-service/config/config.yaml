@@ -1,0 +1,60 @@
+﻿project:
+  name: PathoVision_BreakHis
+  random_seed: 42
+
+data:
+  dataset_root: data/raw/breakhis
+  metadata_dir: data/metadata
+  train_csv: data/metadata/train.csv
+  validation_csv: data/metadata/validation.csv
+  test_csv: data/metadata/test.csv
+
+image:
+  height: 224
+  width: 224
+  channels: 3
+
+training:
+  batch_size: 8
+  shuffle_buffer: 1024
+  num_parallel_calls: -1
+  prefetch_buffer: -1
+
+  resnet_head_epochs: 8
+  resnet_finetune_epochs: 8
+  resnet_head_learning_rate: 0.001
+  resnet_finetune_learning_rate: 0.00001
+  resnet_unfreeze_last_layers: 30
+
+  early_stopping_patience: 5
+  reduce_lr_patience: 2
+  minimum_learning_rate: 0.000001
+
+  smoke_epochs: 1
+  smoke_train_steps: 2
+  smoke_validation_steps: 1
+
+augmentation:
+  horizontal_flip: true
+  rotation_factor: 0.05
+  zoom_factor: 0.10
+  translation_factor: 0.05
+  contrast_factor: 0.10
+
+classes:
+  benign: 0
+  malignant: 1
+
+models:
+  resnet50_best: models/resnet50_best.h5
+  resnet50_head_best: models/resnet50_head_best.keras
+  resnet50_finetuned_best: models/resnet50_finetuned_best.keras
+
+  resnet50_smoke: models/resnet50_smoke.keras
+  resnet50_head_smoke: models/resnet50_head_smoke.keras
+  resnet50_finetuned_smoke: models/resnet50_finetuned_smoke.keras
+
+outputs:
+  resnet50: outputs/resnet50
+  evaluation: outputs/evaluation/resnet50_test
+  predictions: outputs/predictions

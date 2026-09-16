@@ -1,0 +1,7 @@
+{
+  "python_interpreter": "ai-service/.venv/Scripts/python.exe",
+  "search_paths": [
+    "ai-service",
+    "ai-service/.venv/Lib/site-packages"
+  ]
+}

@@ -1,0 +1,65 @@
+# Logs
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies & build
+
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Next.js
+
+.next/
+
+# AI Service uploads & outputs
+
+**/web_results/
+**/uploads/
+outputs/web_results/
+static/uploads/
+ai-service/outputs/web_results/
+ai-service/static/uploads/
+CBIS_DDSM_Segmentation-main/outputs/
+
+
+# Python virtualenv & cache
+
+.venv/
+**/.venv/
+venv/
+**/venv/
+env/
+**/env/
+**pycache**/
+**/**pycache**/
+*.pyc
+
+# Scratch & temporary development files
+scratch/
+
+# Local environment variables
+
+.env
+.env.local
+.env.*.local
+

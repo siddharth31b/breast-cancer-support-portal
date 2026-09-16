@@ -1,0 +1,23 @@
+{
+    "selected_model": "ResNet50",
+    "model_path": "models/resnet50_best.h5",
+    "preprocessing_mode": "resnet50",
+    "decision_threshold": 0.5,
+    "image_height": 224,
+    "image_width": 224,
+    "channels": 3,
+    "class_mapping": {
+        "0": "benign",
+        "1": "malignant"
+    },
+    "selected_test_metrics": {
+        "accuracy": 0.8425253991291727,
+        "precision": 0.8718232044198895,
+        "sensitivity": 0.8865168539325843,
+        "specificity": 0.7622950819672131,
+        "f1_score": 0.879108635097493,
+        "roc_auc": 0.9012594400442069,
+        "false_positive": 116,
+        "false_negative": 101
+    }
+}

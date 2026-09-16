@@ -1,0 +1,17 @@
+{
+    "evaluation_method": "dual_specialist_top1_confidence_comparison",
+    "test_root": "C:\\Users\\siddh\\Desktop\\PathoVision_All_Test_Images",
+    "total_images": 1378,
+    "accuracy": 0.5609579100145138,
+    "accuracy_percent": 56.1,
+    "balanced_accuracy": 0.6143043455296571,
+    "balanced_accuracy_percent": 61.43,
+    "macro_precision": 0.5551913158321992,
+    "macro_recall": 0.6143043455296571,
+    "macro_f1": 0.5105172124014028,
+    "macro_f1_percent": 51.05,
+    "weighted_precision": 0.7118861280084902,
+    "weighted_recall": 0.5609579100145138,
+    "weighted_f1": 0.5825661371644733,
+    "weighted_f1_percent": 58.26
+}

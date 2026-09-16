@@ -1,0 +1,122 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  PATIENT
+  DOCTOR
+  RADIOLOGIST
+  HOSPITAL_ADMIN
+  RESEARCHER
+  FIELD_WORKER
+  SUPER_ADMIN
+}
+
+enum BiradsCategory {
+  BI_RADS_0
+  BI_RADS_1
+  BI_RADS_2
+  BI_RADS_3
+  BI_RADS_4
+  BI_RADS_5
+  BI_RADS_6
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String
+  name          String
+  role          Role
+  avatarUrl     String?
+  hospitalName  String?
+  institution   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  patientProfile       PatientProfile?
+  doctorStudies        DiagnosticStudy[] @relation("DoctorAssignedStudies")
+  radiologistStudies   DiagnosticStudy[] @relation("RadiologistAssignedStudies")
+  villageVisits        VillageVisit[]
+  auditLogs            AuditLog[]
+}
+
+model PatientProfile {
+  id             String          @id @default(uuid())
+  userId         String          @unique
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  age            Int?
+  bmi            Float?
+  medicalHistory String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  carePlanTasks  CarePlanTask[]
+  studies        DiagnosticStudy[]
+}
+
+model CarePlanTask {
+  id               String         @id @default(uuid())
+  patientProfileId String
+  patientProfile   PatientProfile @relation(fields: [patientProfileId], references: [id], onDelete: Cascade)
+  title            String
+  frequency        String
+  status           String         @default("pending")
+  dueDate          DateTime?
+  createdAt        DateTime       @default(now())
+}
+
+model DiagnosticStudy {
+  id               String          @id @default(uuid())
+  patientId        String
+  patient          PatientProfile  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctorId         String?
+  doctor           User?           @relation("DoctorAssignedStudies", fields: [doctorId], references: [id])
+  radiologistId    String?
+  radiologist      User?           @relation("RadiologistAssignedStudies", fields: [radiologistId], references: [id])
+  studyType        String          @default("Mammogram (Bilateral)")
+  dicomUrl         String?
+  aiRiskScore      Float?          // 0.00 to 1.00
+  biradsCategory   BiradsCategory?
+  aiHeatmapUrl     String?
+  clinicalNotes    String?
+  status           String          @default("QUEUED") // "QUEUED", "IN_REVIEW", "COMPLETED"
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+}
+
+model VillageVisit {
+  id              String   @id @default(uuid())
+  fieldWorkerId   String
+  fieldWorker     User     @relation(fields: [fieldWorkerId], references: [id], onDelete: Cascade)
+  villageName     String
+  villageCode     String?
+  screeningsCount Int      @default(0)
+  highRiskCases   Int      @default(0)
+  visitDate       DateTime @default(now())
+  createdAt       DateTime @default(now())
+}
+
+model HospitalMetrics {
+  id             String   @id @default(uuid())
+  hospitalName   String
+  activeBeds     Int      @default(0)
+  icuCapacity    Int      @default(0)
+  radiologyLoad  Int      @default(0)
+  departmentName String
+  updatedAt      DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  details   String?
+  ipAddress String?
+  timestamp DateTime @default(now())
+}

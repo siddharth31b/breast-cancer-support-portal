@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "BreastCare AI Mobile Assessment",
+    "slug": "breastcare-mobile-assessment",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  }
+}

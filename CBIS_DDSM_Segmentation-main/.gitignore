@@ -1,0 +1,35 @@
+# Python & PyTorch
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+
+# Next.js & Node.js
+cad-dashboard/node_modules/
+cad-dashboard/.next/
+cad-dashboard/out/
+cad-dashboard/build/
+.npm
+
+# Dataset & Large Raw Files (Excluding trained weights)
+data/
+outputs/
+runs/
+*.csv
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Models & Weights (LFS objects)
+models/
+weights/
+*.pth
+*.pt

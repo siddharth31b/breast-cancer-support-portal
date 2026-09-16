@@ -1,0 +1,9 @@
+true/predicted,adenosis,fibroadenoma,phyllodes_tumor,tubular_adenoma,ductal_carcinoma,lobular_carcinoma,mucinous_carcinoma,papillary_carcinoma
+adenosis,111,0,0,0,0,0,15,6
+fibroadenoma,0,41,0,3,0,0,4,9
+phyllodes_tumor,2,140,4,26,18,1,12,32
+tubular_adenoma,0,0,0,62,0,0,2,0
+ductal_carcinoma,10,133,8,53,400,0,0,7
+lobular_carcinoma,2,42,0,12,1,68,0,0
+mucinous_carcinoma,0,11,0,8,0,0,45,0
+papillary_carcinoma,2,13,3,9,1,0,20,42
